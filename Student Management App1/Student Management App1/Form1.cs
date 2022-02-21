@@ -3,6 +3,7 @@ namespace Student_Management_App1
 {
     public partial class Form1 : Form
     {
+        GPACal oGPAcal = new GPACal();
         public Form1()
         {
             InitializeComponent();
@@ -74,6 +75,26 @@ namespace Student_Management_App1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //Toodo add data to datgridview
+            int n = dataGridView1.Rows.Add();
+            dataGridView1.Rows[n].Cells[0].Value = textBoxID.Text;
+            dataGridView1.Rows[n].Cells[1].Value = textBoxName.Text;
+            dataGridView1.Rows[n].Cells[2].Value = comboBoxMajor.Text;
+            dataGridView1.Rows[n].Cells[2].Value = textBoxGPA.Text;
+            //todo calculter GPAx,Max MIn
+            string input = this.textBoxGPA.Text;
+             
+            double dInput = Convert.ToDouble(input);
+            oGPAcal.addGPA(dInput, Name);
+
+            double gpax = oGPAcal.getGPAx();
+            textBoxGPAx.Text = gpax.ToString();
+
+            double max = oGPAcal.getMax();
+            textBoxMax.Text = max.ToString();
+
+            double min = oGPAcal.getMin();
+            textBoxMin.Text = min.ToString();
 
         }
     }
